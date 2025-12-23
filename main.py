@@ -10,26 +10,31 @@ import GWCutilities as util
 # as a pandas DataFrame
 lwd=pd.read_csv("livwell135.csv")
 
+oneCountryBooleanList = lwd["country_name"] == "India"
+
+oneCountryData = lwd.loc[oneCountryBooleanList]
+
 # Print out the number of rows and columns
-print(lwd.shape)
+print(oneCountryData.shape)
 
 #  basic colors:
 # 'blue', 'green', 'red', 'cyan', 'magenta', 'yellow', 'black', 'white'
 
 # create a scatter plot
-plt.scatter(lwd["year"],lwd["ED_litt_p"],color="red")
+# ER_elec_rural_p = Households in rural areas with access to electricity (%)
+plt.scatter(oneCountryData["year"],oneCountryData["ER_elec_rural_p"],color="red")
 
 # add a title to the plot
-plt.title("Percent of Women Who are Literate over Time")
+plt.title("Percent of Households in Rural Areas with Access to Electricity")
 
 #Label the x-axis
 plt.xlabel("Year")
 
 # label the y-axis
-plt.ylabel("Women who are literate (%)")
+plt.ylabel("Households in rural areas with access to electricity (%)")
 
 # set the range for the y-axis
-plt.ylim(0,14)
+plt.ylim(0,30)
 
 # show the plot
 plt.show()
