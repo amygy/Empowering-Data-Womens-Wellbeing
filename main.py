@@ -33,13 +33,12 @@ ax1.set_ylabel("Electricity Access (%)")
 ax1.set_ylim(0, 100)
 ax1.grid(True, alpha=0.3)
 
-# SUBPLOT 2: Line plot showing growth trend
-ax2.plot(oneCountryData["year"], oneCountryData["ER_elec_rural_p"], color="green", marker="o", linewidth=2, markersize=6)
-ax2.set_title("Growth Trend Over Time")
-ax2.set_xlabel("Year")
-ax2.set_ylabel("Electricity Access (%)")
-ax2.set_ylim(0, 100)
-ax2.grid(True, alpha=0.3)
+# SUBPLOT 2: Histogram
+ax2.hist(oneCountryData["ER_elec_rural_p"], edgecolor='white', bins=8, color='blue', alpha=0.7)
+ax2.set_title("Distribution of Electricity Access")
+ax2.set_xlabel("Electricity Access (%)")
+ax2.set_ylabel("Frequency")
+ax2.grid(True, alpha=0.3, axis='y')
 
 # Adjust layout to prevent overlap
 plt.tight_layout()
