@@ -41,6 +41,10 @@ author = "agent"
 task = "workflow.run"
 args = "Run Python Script"
 
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "Interactive Story"
+
 [[workflows.workflow]]
 name = "Run Python Script"
 author = "agent"
@@ -51,3 +55,14 @@ args = "python main.py"
 
 [workflows.workflow.metadata]
 outputType = "vnc"
+
+[[workflows.workflow]]
+name = "Interactive Story"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "python interactive_story.py"
+
+[workflows.workflow.metadata]
+outputType = "console"
