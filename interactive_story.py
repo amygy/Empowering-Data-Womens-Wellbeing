@@ -1,83 +1,113 @@
 import pandas as pd
 
-# Read the data file
+# Read India's electrification data
 lwd = pd.read_csv("livwell135.csv")
-
-# Get only India's data and sort by year
 india_data = lwd[lwd["country_name"] == "India"].sort_values("year")
 
-# Extract the columns we need
+print("-" * 70)
+print("Households in rural areas with access to electricity")
+print("-" * 70)
+print()
+
+# Story introduction
+print("""
+From 1993 to 2006, India embarked on one of the world's most ambitious 
+journeys: bringing electricity to its rural villages. This isn't just about 
+power lines and light bulbs it's about opportunity, hope, and especially 
+women's empowerment.
+
+Let's explore this story together!
+""")
+
+input("Press Enter to begin the journey through the 1990s...")
+print()
+
+# Extract all years data
 years = india_data["year"].tolist()
 rural_elec = india_data["ER_elec_rural_p"].tolist()
+overall_elec = india_data["EI_elec_p"].tolist()
 women_elec = india_data["EI_women_elec_p"].tolist()
 
-# Story title
-print("=" * 60)
-print("INDIA'S ELECTRICITY STORY (1993-2006)")
-print("=" * 60)
+print("The 1990s: The Starting Point")
+print("-" * 70)
+first_year = years[0]
+first_rural = rural_elec[0]
+first_overall = overall_elec[0]
+first_women = women_elec[0]
+
+print(f"""
+In {first_year}, India faced a massive challenge:
+  • Only {first_rural:.1f}% of rural households had electricity access
+  • Overall, just {first_overall:.1f}% of people had any electrical connection
+  • For women specifically, {first_women:.1f}% had access to electricity
+
+This meant that over 500 million people, mostly in villages lived without 
+electric lights, refrigeration, or communication tools. Women especially 
+suffered, as without electricity:
+  - No electric lights for studying or reading
+  - No electric pumps for water access
+  - No refrigeration to preserve food or medicine
+  - Limited access to modern cooking methods
+""")
+
+input("Press Enter to see the government's plan...")
 print()
 
-# Introduction
-print("In 1993, most people in rural India had no electricity.")
-print(f"Rural access: {rural_elec[0]:.1f}%")
-print(f"Women's access: {women_elec[0]:.1f}%")
+print("""
+The Mission: Rajiv Gandhi's Rural Electrification Scheme (1988) and later
+National Power Policy aimed to bring electricity to every village by 2000.
+
+Key Statistics from the Early Years:
+""")
+
+# Show year by year progression for first 5 years
+for i in range(min(5, len(years))):
+    print(f"  {years[i]}: Rural {rural_elec[i]:.1f}% | Overall {overall_elec[i]:.1f}% | Women {women_elec[i]:.1f}%")
+
+input("Press Enter to see the mid-period challenges...")
 print()
 
-input("Press Enter to see the progress...")
+print("The Mid-Period (1998-2002): Progress with Challenges")
+print("-" * 70)
+
+mid_idx = len(years) // 2
+print(f"""
+By the early 2000s, the infrastructure was expanding rapidly:
+
+  {years[mid_idx]}: Rural {rural_elec[mid_idx]:.1f}% | Overall {overall_elec[mid_idx]:.1f}% | Women {women_elec[mid_idx]:.1f}%
+
+The good news: More villages were getting connected to the power grid.
+The challenge: Creating the infrastructure was expensive and many areas 
+still lacked reliable supply.
+""")
+
+input("Press Enter to hear the women's stories of change...")
 print()
 
-# Show progress over time
-print("Year-by-year progress:")
-print("-" * 60)
-print(f"{'Year':<8} {'Rural %':<15} {'Women %':<15}")
-print("-" * 60)
+print("Women's Empowerment")
+print("-" * 70)
 
-for i in range(len(years)):
-    print(f"{years[i]:<8} {rural_elec[i]:<15.1f} {women_elec[i]:<15.1f}")
+# Calculate women's access improvement
+women_improvement = women_elec[-1] - women_elec[0]
+women_pct_gain = (women_improvement / women_elec[0]) * 100
 
-print()
-input("Press Enter to see what changed...")
-print()
+print(f"""
+One of the most remarkable aspects of electrification was its impact on women:
 
-# Calculate changes
-start_rural = rural_elec[0]
-end_rural = rural_elec[-1]
-start_women = women_elec[0]
-end_women = women_elec[-1]
+From {first_year} to {years[-1]}:
+  • Women's electricity access grew from {women_elec[0]:.1f}% to {women_elec[-1]:.1f}%
+  • That's an improvement of {women_improvement:.1f} percentage points
+  • A {women_pct_gain:.1f}% relative increase!
 
-rural_change = end_rural - start_rural
-women_change = end_women - start_women
+With electricity, women could:
+  - Read and study after dark
+  - Use electric pumps to get water (instead of walking hours)
+  - Refrigerate food and medicine
+  - Listen to news and educational programs on radio
+  - Watch television for information and entertainment
+  - Feel safer with better lighting
+""")
 
-# Show the results
-print(f"From {years[0]} to {years[-1]}:")
-print(f"  Rural electricity grew by {rural_change:.1f} percentage points")
-print(f"  Women's access grew by {women_change:.1f} percentage points")
-print()
-print("This means:")
-print(f"  • More villages got connected to power lines")
-print(f"  • Women had better access to lights, fridges, and tools")
-print(f"  • Families could study, work, and cook better")
-print()
-
-# Interactive part
-user_year = input("Pick a year (1993-2006) to see details: ")
-
-try:
-    user_year = int(user_year)
-    
-    if user_year in years:
-        idx = years.index(user_year)
-        print()
-        print(f"In {user_year}:")
-        print(f"  Rural: {rural_elec[idx]:.1f}%")
-        print(f"  Women: {women_elec[idx]:.1f}%")
-    else:
-        print(f"Year {user_year} not in data. Try a year between {years[0]} and {years[-1]}")
-        
-except:
-    print("Please enter a valid year")
-
-print()
-print("=" * 60)
-print("THE END")
-print("=" * 60)
+print("\n" + "=" * 70)
+print("Thank you for exploring India's electrification story!")
+print("=" * 70)

@@ -20,25 +20,31 @@ print(oneCountryData.shape)
 #  basic colors:
 # 'blue', 'green', 'red', 'cyan', 'magenta', 'yellow', 'black', 'white'
 
-# create a scatter plot
+# Create a figure with 2 subplots side by side
+fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 5))
+
 # ER_elec_rural_p = Households in rural areas with access to electricity (%)
-plt.scatter(oneCountryData["year"],oneCountryData["ER_elec_rural_p"],color="red")
 
-# add a title to the plot
-plt.title("Households in rural areas with access to electricity")
+# SUBPLOT 1: Scatter plot
+ax1.scatter(oneCountryData["year"], oneCountryData["ER_elec_rural_p"], color="red", s=50)
+ax1.set_title("Scatter Plot: Data Points Each Year")
+ax1.set_xlabel("Year")
+ax1.set_ylabel("Electricity Access (%)")
+ax1.set_ylim(0, 100)
+ax1.grid(True, alpha=0.3)
 
-#Label the x-axis
-plt.xlabel("Year")
+# SUBPLOT 2: Line plot showing growth trend
+ax2.plot(oneCountryData["year"], oneCountryData["ER_elec_rural_p"], color="green", marker="o", linewidth=2, markersize=6)
+ax2.set_title("Growth Trend Over Time")
+ax2.set_xlabel("Year")
+ax2.set_ylabel("Electricity Access (%)")
+ax2.set_ylim(0, 100)
+ax2.grid(True, alpha=0.3)
 
-# label the y-axis
-plt.ylabel("Number of Households")
+# Adjust layout to prevent overlap
+plt.tight_layout()
 
-# set the range for the y-axis
-plt.ylim(0,80)
-
-# show the plot
+# Save the plot
+plt.savefig('electricity_access_plot.png', dpi=100, bbox_inches='tight')
+print("Plot saved as electricity_access_plot.png")
 plt.show()
-
-#plt.hist(x = 'ER_elec_rural_p', data=oneCountryData, edgecolor = 'white', bins=10)
-# bins are intervals/ranges of values that data are divided into
-# each band is used to count the frequencies 
