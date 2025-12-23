@@ -43,5 +43,7 @@ ax2.grid(True, alpha=0.3, axis='y')
 # Adjust layout to prevent overlap
 plt.tight_layout()
 
-# show the plot
+# Save the plot
+plt.savefig('electricity_access_plot.png', dpi=100, bbox_inches='tight')
+print("Plot saved as electricity_access_plot.png")
 plt.show()
