@@ -34,7 +34,7 @@ plt.xlabel("Year")
 plt.ylabel("Households in rural areas with access to electricity (%)")
 
 # set the range for the y-axis
-plt.ylim(0,30)
+plt.ylim(0,100)
 
 # show the plot
 plt.show()
