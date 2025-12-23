@@ -31,4 +31,4 @@ A subset of 135 columns from the LivWell dataset which contains data on the well
 A subset of 175 columns from the LivWell dataset which contains data on the well-being of women in 52 countries. 
 This data set has information in it which may be upsetting or difficult to understand for some people.
 
-chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/https://assets.ctfassets.net/idmfh0ehr6d7/45UvEHRY3BH66nPoOMvGvp/fd5dba1b60660928c0315fc053ea1060/LivWell135.csv_Column_Descriptions.pdf
+https://assets.ctfassets.net/idmfh0ehr6d7/45UvEHRY3BH66nPoOMvGvp/fd5dba1b60660928c0315fc053ea1060/LivWell135.csv_Column_Descriptions.pdf
