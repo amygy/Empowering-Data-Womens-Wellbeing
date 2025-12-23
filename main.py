@@ -20,21 +20,28 @@ print(oneCountryData.shape)
 #  basic colors:
 # 'blue', 'green', 'red', 'cyan', 'magenta', 'yellow', 'black', 'white'
 
-# create a scatter plot
+# Create a figure with 2 subplots side by side
+fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 5))
+
 # ER_elec_rural_p = Households in rural areas with access to electricity (%)
-plt.scatter(oneCountryData["year"],oneCountryData["ER_elec_rural_p"],color="red")
 
-# add a title to the plot
-plt.title("Percent of Households in Rural Areas with Access to Electricity")
+# SUBPLOT 1: Scatter plot
+ax1.scatter(oneCountryData["year"], oneCountryData["ER_elec_rural_p"], color="red", s=50)
+ax1.set_title("Households in rural areas with access to electricity (Over Time)")
+ax1.set_xlabel("Year")
+ax1.set_ylabel("Electricity Access (%)")
+ax1.set_ylim(0, 100)
+ax1.grid(True, alpha=0.3)
 
-#Label the x-axis
-plt.xlabel("Year")
+# SUBPLOT 2: Histogram
+ax2.hist(oneCountryData["ER_elec_rural_p"], edgecolor='white', bins=8, color='blue', alpha=0.7)
+ax2.set_title("Distribution of Electricity Access")
+ax2.set_xlabel("Electricity Access (%)")
+ax2.set_ylabel("Frequency")
+ax2.grid(True, alpha=0.3, axis='y')
 
-# label the y-axis
-plt.ylabel("Households in rural areas with access to electricity (%)")
-
-# set the range for the y-axis
-plt.ylim(0,100)
+# Adjust layout to prevent overlap
+plt.tight_layout()
 
 # show the plot
 plt.show()
